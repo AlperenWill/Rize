@@ -10,6 +10,9 @@ import InfoCard from './components/ui/InfoCard'
 import JournalPanel from './components/ui/JournalPanel'
 import BadgeToast from './components/ui/BadgeToast'
 import Certificate from './components/ui/Certificate'
+import ChapterBanner from './components/ui/ChapterBanner'
+import { setChapterAudio } from './lib/audio'
+import { useEffect } from 'react'
 import MuteButton from './components/ui/MuteButton'
 
 const Experience = lazy(() => import('./components/scene/Experience'))
@@ -19,6 +22,9 @@ export default function App() {
   const started = useGameStore((s) => s.started)
   const activeId = useGameStore((s) => s.activeId)
   const journalOpen = useGameStore((s) => s.journalOpen)
+  const chapter = useGameStore((s) => s.chapter)
+  const fading = useGameStore((s) => s.fading)
+  useEffect(() => setChapterAudio(chapter), [chapter])
   const playing = started && !activeId && !journalOpen
 
   return (
@@ -38,6 +44,7 @@ export default function App() {
           <InteractButton />
           <InfoCard />
           <BadgeToast />
+          <ChapterBanner />
           {touch && playing && (
             <>
               <LookPad />
@@ -46,6 +53,7 @@ export default function App() {
           )}
         </>
       )}
+      <div className={`pointer-events-none absolute inset-0 z-[55] bg-bg transition-opacity duration-500 ${fading ? 'opacity-100' : 'opacity-0'}`} />
       <Certificate />
       {!started && <StartScreen />}
     </div>

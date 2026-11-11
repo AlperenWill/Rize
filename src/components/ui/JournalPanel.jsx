@@ -4,7 +4,7 @@ import { chapters, locations } from '../../lib/data'
 
 // Sağ üstte sabit düğme + tıklanınca açılan yan menü
 export default function JournalPanel() {
-  const { discovered, journalOpen, toggleJournal, closeJournal, resetProgress } = useGameStore()
+  const { discovered, journalOpen, toggleJournal, closeJournal, resetProgress, chapter, goChapter } = useGameStore()
   const pct = Math.round((discovered.length / locations.length) * 100)
   return (
     <>
@@ -33,7 +33,11 @@ export default function JournalPanel() {
         {chapters.map((c) => (
           <section key={c.id} className="mt-6">
             <h3 className="text-sm font-bold text-slate-200">Bölüm {c.id}: {c.name}</h3>
-            {!c.available && <p className="text-xs text-slate-500">Yakında…</p>}
+            {c.id !== chapter ? (
+              <button onClick={() => goChapter(c.id)} className="mt-1 rounded-full bg-accent/15 px-3 py-1 text-xs font-bold text-accent active:scale-95">Bu bölüme git →</button>
+            ) : (
+              <p className="text-xs text-slate-500">Şu an buradasın · {c.subtitle}</p>
+            )}
             <ul className="mt-2 space-y-2">
               {locations.filter((l) => l.chapter === c.id).map((l) => {
                 const got = discovered.includes(l.id)

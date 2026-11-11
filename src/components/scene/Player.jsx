@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { input, playerState } from '../../lib/input'
 import { useGameStore } from '../../store/useGameStore'
 import { locationById, locationsOfChapter } from '../../lib/data'
-import { START, EYE_HEIGHT, resolvePosition } from '../../lib/world'
+import { worlds, EYE_HEIGHT } from '../../lib/world'
 
 const WALK = 4.2
 const RUN = 7
@@ -21,9 +21,10 @@ const angleDelta = (a, b) => {
 // Birinci şahıs gözlemci: WASD + fare / sanal joystick + dokunmatik bakış, sinematik mod
 export default function Player() {
   const { camera, gl } = useThree()
-  const yaw = useRef(START.yaw)
+  const yaw = useRef(worlds[1].start.yaw)
   const pitch = useRef(0)
-  const pos = useRef({ x: START.x, z: START.z, y: EYE_HEIGHT })
+  const pos = useRef({ x: worlds[1].start.x, z: worlds[1].start.z, y: EYE_HEIGHT })
+  const lastChapter = useRef(1)
   const bob = useRef(0)
   const lastProx = useRef(0)
 
@@ -76,6 +77,13 @@ export default function Player() {
   useFrame((_, dtRaw) => {
     const dt = Math.min(dtRaw, 0.05)
     const { activeId, started, chapter } = useGameStore.getState()
+    const world = worlds[chapter]
+    if (lastChapter.current !== chapter) {
+      lastChapter.current = chapter
+      pos.current = { x: world.start.x, z: world.start.z, y: EYE_HEIGHT }
+      yaw.current = world.start.yaw
+      pitch.current = 0
+    }
     const lookSens = 'ontouchstart' in window ? TOUCH_SENS : MOUSE_SENS
 
     if (activeId) {
@@ -110,13 +118,13 @@ export default function Player() {
       // ileri = (-sin, -cos), sağ = (cos, -sin)
       const nx = pos.current.x + (-sin * mz + cos * mx) * speed
       const nz = pos.current.z + (-cos * mz - sin * mx) * speed
-      const [rx, rz] = resolvePosition(nx, nz)
+      const [rx, rz] = world.resolve(nx, nz, pos.current.x, pos.current.z)
       pos.current.x = rx
       pos.current.z = rz
       // hafif yürüme sallanması
       const moving = Math.min(len, 1)
       bob.current += dt * 9 * moving
-      pos.current.y += (EYE_HEIGHT + Math.sin(bob.current) * 0.035 * moving - pos.current.y) * 0.2
+      pos.current.y += (EYE_HEIGHT + world.height(rx, rz) + Math.sin(bob.current) * 0.035 * moving - pos.current.y) * 0.2
     }
 
     camera.position.set(pos.current.x, pos.current.y, pos.current.z)

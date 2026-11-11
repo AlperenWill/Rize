@@ -69,3 +69,34 @@ export function makeWoodTexture() {
     }
   }, 128)
 }
+
+// Akan su çizgileri
+export function makeWaterTexture() {
+  return canvasTexture((g, s) => {
+    const rnd = mulberry32(8)
+    g.fillStyle = '#2b7a96'
+    g.fillRect(0, 0, s, s)
+    for (let i = 0; i < 40; i++) {
+      g.strokeStyle = `rgba(255,255,255,${0.1 + rnd() * 0.25})`
+      g.lineWidth = 1 + rnd() * 2
+      const x = rnd() * s, y = rnd() * s
+      g.beginPath()
+      g.moveTo(x, y)
+      g.quadraticCurveTo(x + 20, y + (rnd() - 0.5) * 10, x + 40 + rnd() * 30, y)
+      g.stroke()
+    }
+  })
+}
+
+// Yumuşak sis lekesi
+export function makeMistTexture() {
+  const c = document.createElement('canvas')
+  c.width = c.height = 128
+  const g = c.getContext('2d')
+  const grad = g.createRadialGradient(64, 64, 0, 64, 64, 64)
+  grad.addColorStop(0, 'rgba(235,240,242,0.55)')
+  grad.addColorStop(1, 'rgba(235,240,242,0)')
+  g.fillStyle = grad
+  g.fillRect(0, 0, 128, 128)
+  return new THREE.CanvasTexture(c)
+}

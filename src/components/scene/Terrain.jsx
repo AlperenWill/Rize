@@ -63,24 +63,23 @@ export default function Terrain() {
   )
 }
 
-// Çam ağaçları — iki InstancedMesh (gövde + taç)
-export function Trees({ count = 46 }) {
+// Çam ağaçları — iki InstancedMesh (gövde + taç). region: [minX, maxX, minZ, maxZ]
+const ch1Avoid = (x, z) =>
+  (z > -1 && x > -4) || Math.hypot(x + 11, z + 9) < 9 || Math.hypot(x - 4, z - 14) < 6 || Math.hypot(x + 5, z - 4) < 7 || (x > -2 && z > -2)
+
+export function Trees({ count = 46, seed = 99, region = [-34, 16, -30, 22], avoid = ch1Avoid, crown = '#2f7a43' }) {
   const trunks = useRef()
   const crowns = useRef()
   useLayoutEffect(() => {
-    const r = mulberry32(99)
+    const r = mulberry32(seed)
     const m = new THREE.Matrix4()
     const q = new THREE.Quaternion()
     let n = 0
-    while (n < count) {
-      const x = -34 + r() * 50
-      const z = -30 + r() * 52
-      // meydan, kale ve oyuncu başlangıcına yakın yerleri boş bırak
-      if (z > -1 && x > -4) continue
-      if (Math.hypot(x + 11, z + 9) < 9) continue
-      if (Math.hypot(x - 4, z - 14) < 6) continue
-      if (Math.hypot(x + 5, z - 4) < 7) continue // sinematik kamera yolu
-      if (x > -2 && z > -2) continue
+    let guard = 0
+    while (n < count && guard++ < count * 60) {
+      const x = region[0] + r() * (region[1] - region[0])
+      const z = region[2] + r() * (region[3] - region[2])
+      if (avoid(x, z)) continue
       const s = 0.8 + r() * 0.9
       m.compose(new THREE.Vector3(x, 0.9 * s, z), q, new THREE.Vector3(s, s, s))
       trunks.current.setMatrixAt(n, m)
@@ -88,18 +87,20 @@ export function Trees({ count = 46 }) {
       crowns.current.setMatrixAt(n, m)
       n++
     }
+    trunks.current.count = n
+    crowns.current.count = n
     trunks.current.instanceMatrix.needsUpdate = true
     crowns.current.instanceMatrix.needsUpdate = true
-  }, [count])
+  }, [count, seed, region, avoid])
   return (
     <>
-      <instancedMesh ref={trunks} args={[null, null, count]}>
+      <instancedMesh ref={trunks} args={[null, null, count]} frustumCulled={false}>
         <cylinderGeometry args={[0.18, 0.26, 1.8, 5]} />
         <meshStandardMaterial color="#5a3d26" flatShading />
       </instancedMesh>
-      <instancedMesh ref={crowns} args={[null, null, count]}>
+      <instancedMesh ref={crowns} args={[null, null, count]} frustumCulled={false}>
         <coneGeometry args={[1.3, 4, 6]} />
-        <meshStandardMaterial color="#2f7a43" flatShading />
+        <meshStandardMaterial color={crown} flatShading />
       </instancedMesh>
     </>
   )

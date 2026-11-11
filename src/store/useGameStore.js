@@ -19,8 +19,16 @@ export const useGameStore = create(
       chapterDone: false,
       showCertificate: false,
       muted: false,
+      fading: false,
 
       start: () => set({ started: true }),
+      dismissChapter: () => set({ chapterDone: false }),
+      goChapter: (n) => {
+        if (get().fading || n === get().chapter) return
+        set({ fading: true, chapterDone: false, journalOpen: false })
+        setTimeout(() => set({ chapter: n, nearbyId: null }), 500)
+        setTimeout(() => set({ fading: false }), 900)
+      },
       setNearby: (id) => set((s) => (s.nearbyId === id ? s : { nearbyId: id })),
       inspect: (id) => set({ activeId: id, journalOpen: false }),
       toggleJournal: () => set((s) => ({ journalOpen: !s.journalOpen })),

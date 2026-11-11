@@ -73,3 +73,19 @@ export default function Castle({ position = [-11, 0, -9] }) {
     </group>
   )
 }
+
+// Uzaktan görünüm (LOD): basit kutular
+export function CastleLow({ position }) {
+  return (
+    <group position={position}>
+      <mesh position={[0, 2.2, 0]}>
+        <boxGeometry args={[8, 4.4, 7]} />
+        <meshStandardMaterial color="#9a9486" flatShading />
+      </mesh>
+      <mesh position={[-4, 3.6, -3.5]}>
+        <cylinderGeometry args={[1.7, 1.9, 7.2, 6]} />
+        <meshStandardMaterial color="#9a9486" flatShading />
+      </mesh>
+    </group>
+  )
+}

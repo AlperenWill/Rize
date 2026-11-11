@@ -1,8 +1,23 @@
 {
   "chapters": [
-    { "id": 1, "name": "Rize Sahili ve Tarihi Kale", "subtitle": "Deniz, taş ve ticaret", "available": true },
-    { "id": 2, "name": "Çay Bahçeleri", "subtitle": "UNESCO mirası yeşil sıralar", "available": false },
-    { "id": 3, "name": "Zilkale ve Doğa", "subtitle": "Fırtına Vadisi'nin sisli yüksekleri", "available": false }
+    {
+      "id": 1,
+      "name": "Rize Sahili ve Tarihi Kale",
+      "subtitle": "Deniz, taş ve ticaret",
+      "available": true
+    },
+    {
+      "id": 2,
+      "name": "Çay Bahçeleri",
+      "subtitle": "UNESCO mirası yeşil sıralar",
+      "available": true
+    },
+    {
+      "id": 3,
+      "name": "Zilkale ve Doğa",
+      "subtitle": "Fırtına Vadisi'nin sisli yüksekleri",
+      "available": true
+    }
   ],
   "locations": [
     {
@@ -10,9 +25,24 @@
       "chapter": 1,
       "name": "Rize Kalesi",
       "category": "Kale",
-      "position": [-11, 0, -9],
+      "position": [
+        -11,
+        0,
+        -9
+      ],
       "interactRadius": 15,
-      "camera": { "position": [-5, 3.4, 4], "lookAt": [-11, 0.2, -9] },
+      "camera": {
+        "position": [
+          -5,
+          3.4,
+          4
+        ],
+        "lookAt": [
+          -11,
+          0.2,
+          -9
+        ]
+      },
       "title": "Rize Kalesi",
       "era": "Bizans Dönemi",
       "description": "Rize Kalesi, kentin tepesinden denizi gözetleyen eski bir savunma yapısıdır. Bizans döneminden kalan duvarlar, kesme taşların üst üste dizilmesiyle yapılmıştır.",
@@ -21,16 +51,34 @@
         "Kale, denizden gelen gemileri uzaktan görmek için yüksek bir noktaya kurulmuştur.",
         "Taşların arasındaki izler, yüzyıllar önceki işçiliği bugüne taşır."
       ],
-      "badge": { "name": "Kale Bekçisi", "emoji": "🏰" }
+      "badge": {
+        "name": "Kale Bekçisi",
+        "emoji": "🏰"
+      }
     },
     {
       "id": "tarihi-iskele",
       "chapter": 1,
       "name": "Tarihi İskele",
       "category": "Ticaret",
-      "position": [19, 0, 3],
+      "position": [
+        19,
+        0,
+        3
+      ],
       "interactRadius": 11,
-      "camera": { "position": [10, 3, 8], "lookAt": [21, -1.2, 3] },
+      "camera": {
+        "position": [
+          10,
+          3,
+          8
+        ],
+        "lookAt": [
+          21,
+          -1.2,
+          3
+        ]
+      },
       "title": "Tarihi İskele",
       "era": "Osmanlı ve Cumhuriyet Dönemi",
       "description": "İskele, Rize'nin denizle kurduğu bağın simgesidir. Yüzyıllar boyunca çay, mısır ve çeşitli mallar buradan gemilere yüklenmiş, kente yeni ürünler ve haberler gelmiştir.",
@@ -39,55 +87,154 @@
         "İskele, balıkçıların da sabah buluşma noktasıydı.",
         "Ahşap kazıklar tuzlu suya dayanacak şekilde seçilirdi."
       ],
-      "badge": { "name": "Deniz Tüccarı", "emoji": "⚓" }
+      "badge": {
+        "name": "Deniz Tüccarı",
+        "emoji": "⚓"
+      }
     },
     {
       "id": "cay-bitkisi",
       "chapter": 2,
       "name": "Çay Bitkisi",
       "category": "UNESCO",
-      "position": [0, 0, 0],
+      "position": [
+        -8,
+        0,
+        10
+      ],
       "title": "Çay Bitkisi",
       "era": "Yaşayan Miras",
-      "description": "Çay toplama geleneği, UNESCO Somut Olmayan Kültürel Miras kapsamındadır. En körpe iki yaprak ve bir tomurcuk elle koparılır.",
-      "facts": ["Elle toplama, en kaliteli çayı verir."],
-      "badge": { "name": "Çay Toplayıcı", "emoji": "🍃" }
+      "description": "Rize'de çay, yamaçlara basamak basamak dikilen yemyeşil sıralarda yetişir. Çay toplama geleneği UNESCO Somut Olmayan Kültürel Miras listesindedir. En körpe iki yaprak ve bir tomurcuk, el emeğiyle tek tek koparılır.",
+      "facts": [
+        "Çay, her bahar yeniden sürgün verir; toplayıcılar sepetlerini sırtlarında taşır.",
+        "Elle toplama, yaprağın zarar görmemesini sağlar ve çayın tadını korur.",
+        "Bu gelenek, bilgisini aileden çocuğa aktaran toplulukların ortak mirasıdır."
+      ],
+      "badge": {
+        "name": "Çay Toplayıcı",
+        "emoji": "🍃"
+      },
+      "interactRadius": 11,
+      "camera": {
+        "position": [
+          -3.8,
+          1.9,
+          13.8
+        ],
+        "lookAt": [
+          -8,
+          -0.3,
+          10
+        ]
+      }
     },
     {
       "id": "tas-kopru",
       "chapter": 2,
       "name": "Taş Köprü",
       "category": "Mimari",
-      "position": [0, 0, 0],
+      "position": [
+        6,
+        0,
+        -4
+      ],
       "title": "Taş Köprü",
       "era": "Osmanlı Dönemi",
-      "description": "Osmanlı döneminden kalan kemerli taş köprüler, taşların harç kullanılmadan, birbirini kilitleyecek biçimde örülmesiyle ayakta kalır.",
-      "facts": ["Kemer şekli ağırlığı taşlara eşit dağıtır."],
-      "badge": { "name": "Köprü Ustası", "emoji": "🌉" }
+      "description": "Osmanlı döneminden kalan kemerli taş köprüler, derelerin üzerinden vadileri birbirine bağlar. Taşlar harç kullanılmadan, birbirini kilitleyecek biçimde örülür; kemerin biçimi yükü taşlara eşit dağıtır.",
+      "facts": [
+        "Harçsız taş örme tekniğinde her taş, komşusunu sıkıştırarak yerinde tutar.",
+        "Kemerin tepesindeki anahtar taş, tüm yapının dengesini sağlar.",
+        "Birçok köprü yüzyıllardır sel ve fırtınaya dayanmıştır."
+      ],
+      "badge": {
+        "name": "Köprü Ustası",
+        "emoji": "🌉"
+      },
+      "interactRadius": 12,
+      "camera": {
+        "position": [
+          10.5,
+          2.4,
+          6
+        ],
+        "lookAt": [
+          6,
+          -0.2,
+          -4
+        ]
+      }
     },
     {
       "id": "zilkale-duvarlari",
       "chapter": 3,
       "name": "Zilkale Duvarları",
       "category": "Kale",
-      "position": [0, 0, 0],
+      "position": [
+        -16,
+        0,
+        -16
+      ],
       "title": "Zilkale Duvarları",
       "era": "14. Yüzyıl",
-      "description": "Zilkale, Fırtına Vadisi'ne hâkim kayalıklar üzerinde yükselen stratejik bir kaledir.",
-      "facts": ["Vadiyi yukarıdan izlemeye çok uygundur."],
-      "badge": { "name": "Vadi Gözcüsü", "emoji": "⛰️" }
+      "description": "Zilkale, Fırtına Vadisi'ni tepeden gözleyen 14. yüzyıl kalesidir. Dik kayalıkların üzerine kurulduğu için vadiye giren yolları uzaktan izlemek çok kolaydı.",
+      "facts": [
+        "Kale, kayalığın doğal yapısından savunma duvarı olarak faydalanır.",
+        "Yüksekteki gözetleme noktası, vadideki hareketi uzaktan gösterirdi.",
+        "Sisli günlerde kale, bulutların arasında yüzüyormuş gibi görünür."
+      ],
+      "badge": {
+        "name": "Vadi Gözcüsü",
+        "emoji": "⛰️"
+      },
+      "interactRadius": 24,
+      "camera": {
+        "position": [
+          -6,
+          2.6,
+          -2
+        ],
+        "lookAt": [
+          -16,
+          12,
+          -16
+        ]
+      }
     },
     {
       "id": "firtina-deresi",
       "chapter": 3,
       "name": "Dere Kenarı",
       "category": "Doğa",
-      "position": [0, 0, 0],
+      "position": [
+        6,
+        0,
+        6
+      ],
       "title": "Fırtına Deresi",
       "era": "Doğal Miras",
-      "description": "Fırtına Deresi, vadinin ekosistemini besleyen temiz ve hızlı akan bir derededir.",
-      "facts": ["Dere çevresi birçok canlıya yuva olur."],
-      "badge": { "name": "Doğa Koruyucusu", "emoji": "🌿" }
+      "description": "Fırtına Deresi, bol yağışla beslenen hızlı ve berrak bir akarsudur. Kıyısındaki yosunlu kayalar, balıklara, böceklere, kuşlara ve su samurlarına yuva olur; böylece vadinin canlı ekosistemini besler.",
+      "facts": [
+        "Temiz ve soğuk su, birçok canlının yaşaması için gereklidir.",
+        "Dere kenarındaki bitkiler toprağı tutar ve kıyıyı korur.",
+        "Doğayı korumak için derede çöp bırakmamalıyız."
+      ],
+      "badge": {
+        "name": "Doğa Koruyucusu",
+        "emoji": "🌿"
+      },
+      "interactRadius": 11,
+      "camera": {
+        "position": [
+          0.5,
+          2.2,
+          9
+        ],
+        "lookAt": [
+          11,
+          -0.6,
+          6
+        ]
+      }
     }
   ]
 }

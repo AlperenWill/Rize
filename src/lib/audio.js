@@ -1,5 +1,7 @@
 // Prosedürel ambiyans: dalga, rüzgar, kuş ve hafif fon müziği (harici dosya gerektirmez)
 let ctx, master, birdTimer, started = false
+const mix = {}
+let birdChance = 0.6
 
 function noiseBuffer(c, seconds = 4) {
   const buf = c.createBuffer(1, c.sampleRate * seconds, c.sampleRate)
@@ -31,6 +33,7 @@ function loopNoise(c, { type, freq, q = 0.7, gain, lfoRate, lfoDepth }) {
   src.connect(f).connect(g).connect(master)
   src.start()
   lfo.start()
+  return g
 }
 
 function chirp() {
@@ -64,8 +67,10 @@ export function startAmbience() {
   master.gain.value = 0.9
   master.connect(ctx.destination)
 
-  loopNoise(ctx, { type: 'lowpass', freq: 520, gain: 0.22, lfoRate: 0.11, lfoDepth: 0.14 }) // dalga
-  loopNoise(ctx, { type: 'bandpass', freq: 700, q: 0.4, gain: 0.05, lfoRate: 0.07, lfoDepth: 0.035 }) // rüzgar
+  mix.waves = loopNoise(ctx, { type: 'lowpass', freq: 520, gain: 0.22, lfoRate: 0.11, lfoDepth: 0.14 }) // dalga
+  mix.wind = loopNoise(ctx, { type: 'bandpass', freq: 700, q: 0.4, gain: 0.05, lfoRate: 0.07, lfoDepth: 0.035 }) // rüzgar
+  mix.brook = loopNoise(ctx, { type: 'bandpass', freq: 1500, q: 0.8, gain: 0.0, lfoRate: 0.6, lfoDepth: 0.01 }) // dere
+  setChapterAudio(pendingChapter)
 
   // Fon müziği: yumuşak Re minör ped
   ;[146.83, 220, 293.66, 349.23].forEach((f, i) => {
@@ -84,7 +89,7 @@ export function startAmbience() {
     lfo.start()
   })
 
-  birdTimer = setInterval(() => Math.random() < 0.6 && chirp(), 3500)
+  birdTimer = setInterval(() => Math.random() < birdChance && chirp(), 3500)
 }
 
 export function setMuted(muted) {
@@ -97,4 +102,19 @@ export function stopAmbience() {
   ctx?.close()
   ctx = null
   started = false
+}
+
+// Bölüme göre ses karışımı: 1 deniz, 2 dere + kuş, 3 güçlü dere + rüzgar
+const PROFILES = {
+  1: { waves: 0.22, wind: 0.05, brook: 0, birds: 0.6 },
+  2: { waves: 0, wind: 0.03, brook: 0.09, birds: 0.9 },
+  3: { waves: 0, wind: 0.11, brook: 0.14, birds: 0.2 },
+}
+let pendingChapter = 1
+export function setChapterAudio(chapter) {
+  pendingChapter = chapter
+  if (!ctx || !mix.waves) return
+  const p = PROFILES[chapter]
+  for (const k of ['waves', 'wind', 'brook']) mix[k].gain.setTargetAtTime(p[k], ctx.currentTime, 0.6)
+  birdChance = p.birds
 }
