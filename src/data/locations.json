@@ -1,0 +1,93 @@
+{
+  "chapters": [
+    { "id": 1, "name": "Rize Sahili ve Tarihi Kale", "subtitle": "Deniz, taş ve ticaret", "available": true },
+    { "id": 2, "name": "Çay Bahçeleri", "subtitle": "UNESCO mirası yeşil sıralar", "available": false },
+    { "id": 3, "name": "Zilkale ve Doğa", "subtitle": "Fırtına Vadisi'nin sisli yüksekleri", "available": false }
+  ],
+  "locations": [
+    {
+      "id": "rize-kalesi",
+      "chapter": 1,
+      "name": "Rize Kalesi",
+      "category": "Kale",
+      "position": [-11, 0, -9],
+      "interactRadius": 15,
+      "camera": { "position": [-5, 3.4, 4], "lookAt": [-11, 0.2, -9] },
+      "title": "Rize Kalesi",
+      "era": "Bizans Dönemi",
+      "description": "Rize Kalesi, kentin tepesinden denizi gözetleyen eski bir savunma yapısıdır. Bizans döneminden kalan duvarlar, kesme taşların üst üste dizilmesiyle yapılmıştır.",
+      "facts": [
+        "Duvarlar yerel taşlardan, usta ellerle örülmüştür.",
+        "Kale, denizden gelen gemileri uzaktan görmek için yüksek bir noktaya kurulmuştur.",
+        "Taşların arasındaki izler, yüzyıllar önceki işçiliği bugüne taşır."
+      ],
+      "badge": { "name": "Kale Bekçisi", "emoji": "🏰" }
+    },
+    {
+      "id": "tarihi-iskele",
+      "chapter": 1,
+      "name": "Tarihi İskele",
+      "category": "Ticaret",
+      "position": [19, 0, 3],
+      "interactRadius": 11,
+      "camera": { "position": [10, 3, 8], "lookAt": [21, -1.2, 3] },
+      "title": "Tarihi İskele",
+      "era": "Osmanlı ve Cumhuriyet Dönemi",
+      "description": "İskele, Rize'nin denizle kurduğu bağın simgesidir. Yüzyıllar boyunca çay, mısır ve çeşitli mallar buradan gemilere yüklenmiş, kente yeni ürünler ve haberler gelmiştir.",
+      "facts": [
+        "Karadeniz kıyısındaki kentler arasında ticaret çoğunlukla deniz yoluyla yapılırdı.",
+        "İskele, balıkçıların da sabah buluşma noktasıydı.",
+        "Ahşap kazıklar tuzlu suya dayanacak şekilde seçilirdi."
+      ],
+      "badge": { "name": "Deniz Tüccarı", "emoji": "⚓" }
+    },
+    {
+      "id": "cay-bitkisi",
+      "chapter": 2,
+      "name": "Çay Bitkisi",
+      "category": "UNESCO",
+      "position": [0, 0, 0],
+      "title": "Çay Bitkisi",
+      "era": "Yaşayan Miras",
+      "description": "Çay toplama geleneği, UNESCO Somut Olmayan Kültürel Miras kapsamındadır. En körpe iki yaprak ve bir tomurcuk elle koparılır.",
+      "facts": ["Elle toplama, en kaliteli çayı verir."],
+      "badge": { "name": "Çay Toplayıcı", "emoji": "🍃" }
+    },
+    {
+      "id": "tas-kopru",
+      "chapter": 2,
+      "name": "Taş Köprü",
+      "category": "Mimari",
+      "position": [0, 0, 0],
+      "title": "Taş Köprü",
+      "era": "Osmanlı Dönemi",
+      "description": "Osmanlı döneminden kalan kemerli taş köprüler, taşların harç kullanılmadan, birbirini kilitleyecek biçimde örülmesiyle ayakta kalır.",
+      "facts": ["Kemer şekli ağırlığı taşlara eşit dağıtır."],
+      "badge": { "name": "Köprü Ustası", "emoji": "🌉" }
+    },
+    {
+      "id": "zilkale-duvarlari",
+      "chapter": 3,
+      "name": "Zilkale Duvarları",
+      "category": "Kale",
+      "position": [0, 0, 0],
+      "title": "Zilkale Duvarları",
+      "era": "14. Yüzyıl",
+      "description": "Zilkale, Fırtına Vadisi'ne hâkim kayalıklar üzerinde yükselen stratejik bir kaledir.",
+      "facts": ["Vadiyi yukarıdan izlemeye çok uygundur."],
+      "badge": { "name": "Vadi Gözcüsü", "emoji": "⛰️" }
+    },
+    {
+      "id": "firtina-deresi",
+      "chapter": 3,
+      "name": "Dere Kenarı",
+      "category": "Doğa",
+      "position": [0, 0, 0],
+      "title": "Fırtına Deresi",
+      "era": "Doğal Miras",
+      "description": "Fırtına Deresi, vadinin ekosistemini besleyen temiz ve hızlı akan bir derededir.",
+      "facts": ["Dere çevresi birçok canlıya yuva olur."],
+      "badge": { "name": "Doğa Koruyucusu", "emoji": "🌿" }
+    }
+  ]
+}
